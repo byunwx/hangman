@@ -30,10 +30,13 @@ button{
   color: white;
 }
 button:hover{
-  color: red !important;
+  color: yellow !important;
+}
+button:active{
+  color:yellow!important;
 }
 button:focus{
-  color:white;
+  color:white!important;
 }
 .col-md-6{
   display: inline-grid;
