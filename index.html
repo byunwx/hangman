@@ -32,15 +32,16 @@
             <span id="blank"></span><br><br>
           </div>
           <div class="col-md-6 right">
-            <div class"row">
+            <div class="row" id="top">
 
-              <img class="middle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqjA4XPv0hzp5b35nXi99NJ7y5KHyNZCwjQzvab8WCys5mpVduPw" alt="hangman">
+
             </div>
             <div class="row middle">
               <p>count:</p>
               <span id="count"></span><br>
               <p>Letter Guessed:</p>
               <span id="Guessed"></span><br>
+              <div class="button"><button onclick="initial()" class="btn bg-color btn-lg">reset</button></div>
             </div>
 
 
@@ -53,98 +54,6 @@
 
     <!-- We have to put this at the end of our document to ensure the user-text
          span exists when we try to access it. -->
-    <script type="text/javascript">
-      // Let's start by grabbing a reference to the <span> below.
-
-      var count, hangManWord, rightcount;
-      var userInput = document.getElementById("user-Input");
-      var alpha="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-      var wordChar=[];
-      var letterGuessed=[];
-      var letterRight=[];
-      var randoWord=["Helloworld", "virginia", "computer", "programming", "washington"]
-      var blank= [];
-
-    function initial(){
-
-      userInput = document.getElementById("user-Input");
-      count=5;
-      hangManWord= randoWord[Math.floor(Math.random()*(randoWord.length))].toUpperCase();
-      rightcount=0;
-      wordChar=[];
-      letterGuessed=[];
-      letterRight=[];
-      blank= [];
-
-
-
-      document.getElementById("count").innerHTML = count;
-      document.getElementById("message").innerHTML = "Welcome to the game!";
-      for (var i = 0; i < hangManWord.length; i++) {
-        var wordCharAdder= hangManWord.charAt(i);
-        wordChar.push(wordCharAdder);
-      }
-
-      for (var i = 0; i<wordChar.length; i++){
-        var underline= "___";
-        blank.push(underline);
-      }
-
-      document.getElementById("blank").innerHTML = blank.join("  ");
-      document.getElementById("Guessed").innerHTML = letterGuessed;
-
-    }
-
-
-    initial();
-
-
-    function fillBlank(a){
-      for(var i=0; i<wordChar.length; i++){
-        if(wordChar[i]==a){
-          blank.splice(i, 1, a);
-          rightcount+=1;
-        }
-      }
-    }
-
-
-      // Next, we give JavaScript a function to execute when onkeyup event fires.
-      document.onkeyup = function (event) {
-
-        userInput.textContent = event.key;
-        var eventkey=event.key.toUpperCase();
-      if(alpha.indexOf(event.key)>=0){
-        if (wordChar.indexOf(eventkey) < 0 && letterGuessed.indexOf(eventkey)<0) {
-            document.getElementById("message").innerHTML = "Please Try again";
-            count-=1;
-            document.getElementById("count").innerHTML = count;
-            letterGuessed.push(eventkey);
-            document.getElementById("Guessed").innerHTML = letterGuessed.join(" ");
-            console.log(letterGuessed)
-        }else if(letterRight.indexOf(eventkey) >= 0||letterGuessed.indexOf(eventkey)>=0) {
-                  document.getElementById("message").innerHTML = "You already guessed this letter";
-        }else {
-            //  display the key the user pressed (userGuess).
-            document.getElementById("message").innerHTML = "good!";
-            letterRight.push(eventkey);
-            fillBlank(eventkey);
-            document.getElementById("blank").innerHTML = blank.join("  ");
-              //  display the key the Computer guessed.
-        }
-      }
-      if(count<0){
-        document.getElementById("message").innerHTML = "You Lost!!!";
-
-        }
-      if(rightcount>=wordChar.length){
-        document.getElementById("message").innerHTML = "You Won!!!";
-        return;
-        }
-      if(count<-1){
-          initial()
-        }
-      };
-    </script>
+    <script type="text/javascript" src="./js/logic.js"></script>
   </body>
 </html>
