@@ -1,6 +1,18 @@
 
   // Let's start by grabbing a reference to the <span> below.
+  var music = document.getElementById('music');
 
+  function playAudio() {
+  	if (music.paused) {
+  		music.play();
+  		pButton.className = "glyphicon glyphicon-pause";
+  		pButton.className = "pause";
+  	} else {
+  		music.pause();
+  		pButton.className = "glyphicon glyphicon-play";
+  		pButton.className = "play";
+  	}
+  }
   var count, hangManWord, rightcount;
   var userInput = document.getElementById("user-Input");
   var alpha="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
