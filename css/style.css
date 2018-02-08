@@ -40,8 +40,8 @@ button:focus{
 }
 .col-md-6{
   display: inline-grid;
-  position: relative;
   height: 700px;
+
 }
 .left{
   border: dotted 5px;
@@ -78,7 +78,6 @@ span{
 .middle{
   text-align: center;
   margin: auto;
-  padding: 5%;
   font-size: 25px;
 }
 #top{
