@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Events!</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+  </head>
+  <body>
+  <body>
+          <div class="jumbotron">
+            <div class="container">
+              <div class="button"><button onclick="initial()" class="btn bg-color btn-lg">reset</button></div>
+            </div>
+          </div>
+      <div class="container body">
+        <div class="row">
+          <div class="col-md-6 left">
+
+            <h1>Hangman Game!!</h1>
+            <br>
+            <p>Your input</p>
+            <h2>You just typed <span id="user-Input"><strong>...Nothing.</strong></span></h2>
+            <br><br>
+            <p>feedback:</p>
+            <span id="message"></span>
+            <br><br>
+            <p>count:</p>
+            <span id="count"></span><br>
+            <p>Letter Guessed:</p>
+            <span id="Guessed"></span><br>
+            <p>HANGMAN GAME</p>
+            <span id="blank"></span><br><br>
+          </div>
+          <div class="col-md-6 right">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqjA4XPv0hzp5b35nXi99NJ7y5KHyNZCwjQzvab8WCys5mpVduPw" alt="hangman">
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- We have to put this at the end of our document to ensure the user-text
+         span exists when we try to access it. -->
+    <script type="text/javascript">
+      // Let's start by grabbing a reference to the <span> below.
+
+      var count, hangManWord, rightcount;
+      var userInput = document.getElementById("user-Input");
+      var alpha="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+      var wordChar=[];
+      var letterGuessed=[];
+      var letterRight=[];
+      var randoWord=["Helloworld", "virginia", "computer", "programming", "washington"]
+      var blank= [];
+
+    function initial(){
+
+      userInput = document.getElementById("user-Input");
+      count=5;
+      hangManWord= randoWord[Math.floor(Math.random()*(randoWord.length))].toUpperCase();
+      rightcount=0;
+      wordChar=[];
+      letterGuessed=[];
+      letterRight=[];
+      blank= [];
+
+
+
+      document.getElementById("count").innerHTML = count;
+      document.getElementById("message").innerHTML = "Welcome to the game!";
+      for (var i = 0; i < hangManWord.length; i++) {
+        var wordCharAdder= hangManWord.charAt(i);
+        wordChar.push(wordCharAdder);
+      }
+
+      for (var i = 0; i<wordChar.length; i++){
+        var underline= " ___ ";
+        blank.push(underline);
+      }
+
+      document.getElementById("blank").innerHTML = blank;
+      document.getElementById("Guessed").innerHTML = letterGuessed;
+
+    }
+
+    initial();
+
+
+    function fillBlank(a){
+      for(var i=0; i<wordChar.length; i++){
+        if(wordChar[i]==a){
+          blank.splice(i, 1, a);
+          rightcount+=1;
+        }
+      }
+    }
+
+
+      // Next, we give JavaScript a function to execute when onkeyup event fires.
+      document.onkeyup = function (event) {
+
+        userInput.textContent = event.key;
+        var eventkey=event.key.toUpperCase();
+      if(alpha.indexOf(event.key)>=0){
+        if (wordChar.indexOf(eventkey) < 0 && letterGuessed.indexOf(eventkey)<0) {
+            document.getElementById("message").innerHTML = "Please Try again";
+            count-=1;
+            document.getElementById("count").innerHTML = count;
+            letterGuessed.push(eventkey);
+            document.getElementById("Guessed").innerHTML = letterGuessed;
+            console.log(letterGuessed)
+        }else if(letterRight.indexOf(eventkey) >= 0||letterGuessed.indexOf(eventkey)>=0) {
+                  document.getElementById("message").innerHTML = "You already guessed this letter";
+        }else {
+            //  display the key the user pressed (userGuess).
+            document.getElementById("message").innerHTML = "good!";
+            letterRight.push(eventkey);
+            fillBlank(eventkey);
+            document.getElementById("blank").innerHTML = blank;
+              //  display the key the Computer guessed.
+        }
+      }
+      if(count<0){
+        document.getElementById("message").innerHTML = "You Lost!!!";
+        initial()
+        }
+      if(rightcount>=wordChar.length){
+        document.getElementById("message").innerHTML = "You Won!!!";
+        return;
+        }
+
+      };
+    </script>
+  </body>
+</html>
