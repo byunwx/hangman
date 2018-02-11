@@ -19,7 +19,7 @@
   var wordChar=[];
   var letterGuessed=[];
   var letterRight=[];
-  var randoWord=["Helloworld", "virginia", "computer", "programming", "washington"]
+  var randoWord=["Helloworld", "virginia", "computer", "programming", "washington", "cat", "wholefood", "wegmans", "lemon"]
   var blank= [];
   var images=
       ["url(./images/hang6.png)",
