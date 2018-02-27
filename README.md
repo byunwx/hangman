@@ -1,6 +1,6 @@
 # Hangman Game
 
-*simple and fun hangman game
+* simple and fun hangman game
 
 ## Tech used
 * html
