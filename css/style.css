@@ -15,7 +15,7 @@
 	background-position: center;
   margin: auto;
 }
-.play{background: url('http://theheartgarden.com.au/wp-content/uploads/2016/11/video-play-icon.png') no-repeat;}
+.play{background: url('../images/icons/music.png') no-repeat;}
 .pause{background: url('../images/icons/pause.png') no-repeat;}
 
 
